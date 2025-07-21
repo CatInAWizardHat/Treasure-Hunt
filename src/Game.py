@@ -12,8 +12,11 @@ class Game:
         self.board: Board = board
         self.cnx: int = 0
 
-    def get_player(self) -> Player:
-        return self.players[self.cnx]
+    def get_player(self, id: int) -> Player:
+        if id < 0 or id >= MAX_PLAYERS:
+            raise ValueError("Invalid ID")
+        else:
+            return self.players[id]
 
     def add_player(self) -> None:
         if self.cnx == MAX_PLAYERS:
