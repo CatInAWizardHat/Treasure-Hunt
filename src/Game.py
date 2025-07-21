@@ -25,3 +25,18 @@ class Game:
         new_player = Player(PLAYER_NAMES[self.cnx])
         self.cnx += 1
         self.players.append(new_player)
+
+    def handle_pick(self, player, row, col):
+        if row < 1 or row > self.board.n:
+            raise ValueError(
+                f"Invalid row selection, must be between 1 and {self.board.n}"
+            )
+        elif col < 1 or row > self.board.n:
+            raise ValueError(
+                f"Invalid column selection, must be between 1 and {self.board.n}"
+            )
+        else:
+            value = self.board.pick(row, col)
+            if value.isnumeric():
+                player.add_score(int(value))
+                return player.score
