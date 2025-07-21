@@ -10,7 +10,7 @@ class Board:
     else, initializes a multi-dimensional array containing underscores.
     """
 
-    def __init__(self, n, t):
+    def __init__(self, n: int, t: int) -> None:
         try:
             self.n = n
             self.t = t
@@ -26,7 +26,7 @@ class Board:
             self.board = [["_" for _ in range(self.n)] for _ in range(self.n)]
             self.populate_board()
 
-    def pick(self, row, col) -> str:
+    def pick(self, row: int, col: int) -> str:
         """
         Picks a row and column passed in from user input.
         returns "Empty" if value within board[row][col] is an underscore,

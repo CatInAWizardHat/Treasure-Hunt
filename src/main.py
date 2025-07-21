@@ -66,7 +66,7 @@ async def asyncio_game_logic(reader: StreamReader, writer: StreamWriter) -> None
                     print(value)
                 print(board)
                 print(player)
-                packet = struct.pack("!HH", player.get_score(), 0)
+                packet = struct.pack("!HH", player.score, 0)
                 writer.write(packet)
             except struct.error:
                 print("Error unpacking message")
