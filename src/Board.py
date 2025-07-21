@@ -15,9 +15,9 @@ class Board:
             self.n = n
             self.t = t
             if n < 2:
-                raise ValueError('n must not be less than 2')
+                raise ValueError("n must not be less than 2")
             if n < t:
-                raise Exception('Board size too small for number of treasures')
+                raise Exception("Board size too small for number of treasures")
         except ValueError as details:
             raise ValueError(details) from details
         except Exception as details:
@@ -49,7 +49,7 @@ class Board:
             else:
                 return value
 
-    def populate_board(self):
+    def populate_board(self) -> None:
         """
         Populates the board by choosing a random starting location,
         then iterating over the row or column based
@@ -72,7 +72,7 @@ class Board:
                 for j in range(0, i):
                     self.board[row][(col + j) % self.n] = str(i)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Creates a string representation of the board to be returned
         Iterates over self.board[][]
@@ -80,10 +80,4 @@ class Board:
         Every self.n indexes, concatenates a newline character.
         :return: a string representation of the current board.
         """
-        self.str_board = ''
-        for i in range(0, self.n):
-            for j in range(0, self.n):
-                self.str_board += self.board[i][j]
-                self.str_board += ' '
-            self.str_board = self.str_board + '\n'
-        return self.str_board
+        return "\n".join(" ".join(row) for row in self.board) + "\n"
