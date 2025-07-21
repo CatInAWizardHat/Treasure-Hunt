@@ -61,15 +61,20 @@ class Board:
         if the index of the treasure would exceed the bounds of the array
         uses modulo operator to wrap back to the nth index
         """
+        all_coords = [(r, c) for r in range(self.n) for c in range(self.n)]
+        random.shuffle(all_coords)
+
+        starting_coords = [all_coords.pop() for _ in range(self.t)]
+
         for i in range(1, self.t + 1):
-            row = random.randint(0, self.n - 1)
-            col = random.randint(0, self.n - 1)
+            row, col = starting_coords[i - 1]
             vertical_direction = random.choice([True, False])
+
             if vertical_direction:
-                for j in range(0, i):
+                for j in range(i):
                     self.board[(row + j) % self.n][col] = str(i)
             else:
-                for j in range(0, i):
+                for j in range(i):
                     self.board[row][(col + j) % self.n] = str(i)
 
     def __str__(self) -> str:
